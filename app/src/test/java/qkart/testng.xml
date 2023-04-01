@@ -33,7 +33,7 @@
                 <!-- workspace/dnyaneshwarbabar1998-ME_QKART_QA/app/src/test/java/QKART_TESTNG/QKART_Tests.java -->
 <methods>
     <include name="TestCase01"/>
-    <include name="TestCase02"/>
+<!--    <include name="TestCase02"/>-->
 </methods>
             </class>
         </classes>

@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -24,6 +25,8 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 //import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -49,6 +52,7 @@ public class QkartTests {
         //driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
         ChromeOptions co = new ChromeOptions();
         co.addArguments("--remote-allow-origins=*");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(co);
         driver.manage().window().maximize();
         System.out.println("createDriver()");
@@ -81,6 +85,8 @@ public class QkartTests {
         Home home = new Home(driver);
         status = home.PerformLogout();
         assertTrue(status,"Test Case 1: Verify user Registration : FAIL");
+        Actions act = new Actions(driver);
+
 
 
     }
@@ -716,7 +722,9 @@ public class QkartTests {
             if (!theDir.exists()) {
                 theDir.mkdirs();
             }
-            String timestamp = String.valueOf(System.currentTimeMillis());
+            String timestamp = String.valueOf(java.time.LocalDate.now());
+            String timestamp2 = String.valueOf(java.time.LocalTime.now());
+            System.out.println(timestamp2);
             String fileName = String.format("screenshot_%s_%s_%s.png",timestamp, screenshotType, description);
             TakesScreenshot scrShot = ((TakesScreenshot) driver);
             File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
